@@ -22,34 +22,35 @@ class Email_Driver_Sendgrid extends \Email_Driver
      */
     protected $response;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __construct(array $config)
-	{
-		$config['encode_headers'] = false;
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(array $config)
+    {
+        $config['encode_headers'] = false;
 
-		parent::__construct($config);
-	}
+        parent::__construct($config);
+    }
 
-    protected function build_email($recipient) {
+    protected function build_email($recipient)
+    {
         return new SendGrid\Email($recipient['name']? $recipient['name']: '', $recipient['email']);
     }
 
-    protected function build_emails($addresses) {
-		$return = array();
-		foreach ($addresses as $recipient)
-		{
-			$return[] = $this->build_email($recipient);
-		}
+    protected function build_emails($addresses)
+    {
+        $return = array();
+        foreach ($addresses as $recipient) {
+            $return[] = $this->build_email($recipient);
+        }
         return $return;
     }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function _send()
-	{
+    /**
+     * {@inheritdoc}
+     */
+    protected function _send()
+    {
         $headers = $this->extra_headers;
         $from = $this->build_email($this->get_from());
         $subject = $this->get_subject();
@@ -90,51 +91,51 @@ class Email_Driver_Sendgrid extends \Email_Driver
         // print_r($response->headers());
         // echo $response->body();
 
-		logger(\Fuel::L_DEBUG, "SendGrid response code {$response->statusCode()}");
-		logger(\Fuel::L_DEBUG, "SendGrid response body {$response->body()}");
+        logger(\Fuel::L_DEBUG, "SendGrid response code {$response->statusCode()}");
+        logger(\Fuel::L_DEBUG, "SendGrid response body {$response->body()}");
 
         return $response->statusCode() < 300;
 
-		// // Get attachments
-		// $attachments = array();
+        // // Get attachments
+        // $attachments = array();
 
-		// foreach ($this->attachments['attachment'] as $cid => $attachment)
-		// {
-		// 	$attachments[] = array(
-		// 		'type'    => $attachment['mime'],
-		// 		'name'    => $attachment['file'][1],
-		// 		'content' => $attachment['contents'],
-		// 	);
-		// }
+        // foreach ($this->attachments['attachment'] as $cid => $attachment)
+        // {
+        // 	$attachments[] = array(
+        // 		'type'    => $attachment['mime'],
+        // 		'name'    => $attachment['file'][1],
+        // 		'content' => $attachment['contents'],
+        // 	);
+        // }
 
-		// // Get inline images
-		// $images = array();
+        // // Get inline images
+        // $images = array();
 
-		// foreach ($this->attachments['inline'] as $cid => $attachment)
-		// {
-		// 	if (\Str::starts_with($attachment['mime'], 'image/'))
-		// 	{
-		// 		$name = substr($cid, 4); // remove cid:
+        // foreach ($this->attachments['inline'] as $cid => $attachment)
+        // {
+        // 	if (\Str::starts_with($attachment['mime'], 'image/'))
+        // 	{
+        // 		$name = substr($cid, 4); // remove cid:
 
-		// 		$images[] = array(
-		// 			'type'    => $attachment['mime'],
-		// 			'name'    => $name,
-		// 			'content' => $attachment['contents'],
-		// 		);
-		// 	}
-		// }
+        // 		$images[] = array(
+        // 			'type'    => $attachment['mime'],
+        // 			'name'    => $name,
+        // 			'content' => $attachment['contents'],
+        // 		);
+        // 	}
+        // }
 
-		// // Get reply-to addresses
-		// if ( ! empty($this->reply_to))
-		// {
-		// 	$headers['Reply-To'] = static::format_addresses($this->reply_to);
-		// }
+        // // Get reply-to addresses
+        // if ( ! empty($this->reply_to))
+        // {
+        // 	$headers['Reply-To'] = static::format_addresses($this->reply_to);
+        // }
 
-		// $important = false;
+        // $important = false;
 
-		// if (in_array($this->config['priority'], array(\Email::P_HIGH, \Email::P_HIGHEST)))
-		// {
-		// 	$important = true;
-		// }
-	}
+        // if (in_array($this->config['priority'], array(\Email::P_HIGH, \Email::P_HIGHEST)))
+        // {
+        // 	$important = true;
+        // }
+    }
 }
