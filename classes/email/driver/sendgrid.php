@@ -36,7 +36,7 @@ class Email_Driver_Sendgrid extends \Email_Driver
 
     protected function build_email($recipient)
     {
-        return new SendGrid\Email($recipient['name']? $recipient['name']: '', $recipient['email']);
+        return new \SendGrid\Email($recipient['name']? $recipient['name']: '', $recipient['email']);
     }
 
     protected function build_emails($addresses)
@@ -59,12 +59,12 @@ class Email_Driver_Sendgrid extends \Email_Driver
         $to = $this->build_emails($this->get_to());
         $cc = $this->build_emails($this->get_cc());
         $bcc = $this->build_emails($this->get_bcc());
-        $content = new SendGrid\Content($this->config['is_html']? 'text/html': 'text/plain', $this->get_body());
+        $content = new \SendGrid\Content($this->config['is_html']? 'text/html': 'text/plain', $this->get_body());
 
-        $mail = new SendGrid\Mail();
+        $mail = new \SendGrid\Mail();
 
         $mail->setFrom($from);
-        $personalization = new SendGrid\Personalization();
+        $personalization = new \SendGrid\Personalization();
         foreach ($to as $email) {
             $personalization->addTo($email);
         }
