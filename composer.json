@@ -1,12 +1,11 @@
 {
     "name": "koudenpa/sendgrid-fuelphp",
+	"type": "fuel-package",
     "version": "0.0.1",
     "require": {
         "fuel/email": ">=1.8.0",
-        "sendgrid/sendgrid": "*"
-    },
-    "autoload": {
-        "files": ["classes/email/driver/sendgrid.php"]
+        "sendgrid/sendgrid": "*",
+		"composer/installers": "~1.0"
     },
     "license": "MIT"
 }
