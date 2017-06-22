@@ -5,5 +5,8 @@
         "fuel/email": ">=1.8.0",
         "sendgrid/sendgrid": "*"
     },
+    "autoload": {
+        "files": ["classes/email/driver/sendgrid.php"]
+    },
     "license": "MIT"
 }

@@ -1,6 +1,4 @@
-
 <?php
-namespace Email;
 
 /**
  * Fuel
@@ -15,6 +13,7 @@ namespace Email;
  * @link       http://fuelphp.com
  */
 
+namespace Email;
 
 class Email_Driver_Sendgrid extends \Email_Driver
 {
