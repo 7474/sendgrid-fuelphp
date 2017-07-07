@@ -1,7 +1,7 @@
 {
     "name": "koudenpa/sendgrid-fuelphp",
 	"type": "fuel-package",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "require": {
         "fuel/email": ">=1.8.0",
         "sendgrid/sendgrid": "*",
