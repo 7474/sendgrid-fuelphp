@@ -61,9 +61,8 @@ class Email_Driver_Sendgrid extends \Email_Driver
         $bcc = $this->build_emails($this->get_bcc());
         $content = new \SendGrid\Content($this->config['is_html']? 'text/html': 'text/plain', $this->get_body());
 
-        $mail = new \SendGrid\Mail(null, null, null, null);
+        $mail = new \SendGrid\Mail($from, $subject, null, $content);
 
-        $mail->setFrom($from);
         $personalization = new \SendGrid\Personalization();
         foreach ($to as $email) {
             $personalization->addTo($email);
@@ -77,9 +76,9 @@ class Email_Driver_Sendgrid extends \Email_Driver
         foreach ($headers as $name => $value) {
             $personalization->addHeader($name, $value);
         }
-        $mail->addPersonalization($personalization);
-        $mail->setSubject($subject);
-        $mail->addContent($content);
+        // $mail->addPersonalization($personalization);
+        // Override empty personalization.
+        $mail->personalization[0] = $personalization;
 
         $apiKey = $this->config['sendgrid']['key'];
         $sg = new \SendGrid($apiKey);

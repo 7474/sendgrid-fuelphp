@@ -1,10 +1,10 @@
 {
     "name": "koudenpa/sendgrid-fuelphp",
 	"type": "fuel-package",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "require": {
         "fuel/email": ">=1.8.0",
-        "sendgrid/sendgrid": "*",
+        "sendgrid/sendgrid": "~6.0",
 		"composer/installers": "~1.0"
     },
     "license": "MIT"
