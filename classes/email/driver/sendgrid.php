@@ -36,7 +36,7 @@ class Email_Driver_Sendgrid extends \Email_Driver
 
     protected function build_email($recipient)
     {
-        return new \SendGrid\Email($recipient['name']? $recipient['name']: '', $recipient['email']);
+        return new \SendGrid\Email($recipient['name']? $recipient['name']: '', trim($recipient['email']));
     }
 
     protected function build_emails($addresses)
