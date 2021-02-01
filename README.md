@@ -14,7 +14,7 @@ Add to composer.json.
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://github.com/7474/sendgrid-fuelphp.git"
+        "url": "https://github.com/7474/sendgrid-fuelphp"
     }
 ],
 ```
